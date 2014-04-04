@@ -17,7 +17,7 @@ if ( CLIENT ) then
 	function ENT:BeingLookedAtByLocalPlayer()
 	
 		if ( LocalPlayer():GetEyeTrace().Entity != self ) then return false end
-		if ( EyePos():Distance( self:GetPos() ) > 256 ) then return false end
+		if ( ( EyePos() - self:GetPos() ):LengthSqr() > 65536 ) then return false end // 65536 = 256^2, slightly faster than using Distance
 		
 		return true
 	
